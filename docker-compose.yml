@@ -1,0 +1,11 @@
+version: '2'
+services:
+    docker-escape:
+       image: escape:1.0
+       container_name: escape
+       volumes:
+         - /etc/shadow:/tmp/shadow.txt:rw
+         - /proc/cmdline:/tmp/cmdline.txt:rw
+         - /proc/cpuinfo:/tmp/cpuinfo.txt:rw
+         - /home:/tmp/home:rw
+
