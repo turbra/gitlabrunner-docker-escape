@@ -1,0 +1,30 @@
+stages:
+  - build_image
+  - run_container  
+  - cleanup
+
+Build the image:
+  image: docker:latest
+  stage: build_image
+  script:
+    - whoami
+    - docker build --tag="escape:1.0" .
+  tags:
+    - runner-docker
+    
+Run the container:
+  image: docker/compose:latest
+  stage: run_container  
+  script:
+    - whoami
+    - docker-compose up
+  tags:
+    - runner-docker
+
+Destroy the container:
+  stage: cleanup
+  script:
+    - whoami
+    - docker-compose rm -f -v
+  tags:
+    - runner-shell  
